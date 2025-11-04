@@ -1,0 +1,20 @@
+# requirements.txt - Compatible with Python 3.13
+# Install with: pip install -r requirements.txt
+
+fastapi
+uvicorn
+streamlit
+transformers
+opencv-python
+pytesseract
+sqlalchemy
+psycopg2
+scikit-learn
+pandas
+requests
+torch          # Auto-selects latest compatible version for Python 3.13
+torchvision    # Auto-selects matching version for your torch
+Pillow
+python-multipart
+aiofiles
+python-dotenv
