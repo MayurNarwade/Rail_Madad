@@ -9,7 +9,7 @@ import io
 import time
 
 # Configuration
-API_BASE_URL = "http://localhost:8000/api/v1"
+API_BASE_URL = "https://rail-madad-jv15.onrender.com/api/v1"
 
 # Page configuration
 st.set_page_config(
