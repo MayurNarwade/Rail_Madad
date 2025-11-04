@@ -1,0 +1,8 @@
+# Method 2: Manual
+# Backend (Terminal 1)
+cd backend
+python -m uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+
+# Frontend (Terminal 2)  
+cd frontend
+streamlit run streamlit_app.py

@@ -1,0 +1,69 @@
+# docker-compose.yml - Orchestrates backend, frontend, and PostgreSQL services
+# Ensures scalable, containerized deployment for Rail Madad AI
+# Links services with environment variables and networking
+
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    depends_on:
+      - db
+    networks:
+      - railmadad-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    networks:
+      - railmadad-net
+    environment:
+      - API_URL=http://backend:8000
+
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - railmadad-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  railmadad-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+
+# Explanation:
+# version: Specifies Docker Compose version for compatibility.
+# services:
+#   backend: Builds from Dockerfile.backend, exposes port 8000, uses DATABASE_URL from .env.
+#   frontend: Builds from Dockerfile.frontend, exposes port 8501, connects to backend via API_URL.
+#   db: Uses official PostgreSQL image, persists data with volume, uses env vars for credentials.
+# networks: Creates isolated network for services to communicate.
+# volumes: Persists DB data across container restarts.
+# healthcheck: Ensures services are running (backend health endpoint, DB readiness).
