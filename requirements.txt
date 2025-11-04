@@ -1,20 +1,33 @@
-# requirements.txt - Compatible with Python 3.13
-# Install with: pip install -r requirements.txt
+# === Core Web Frameworks ===
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+streamlit==1.31.1
 
-fastapi
-uvicorn
-streamlit
-transformers
-opencv-python
-pytesseract
-sqlalchemy
-psycopg2-binary
-scikit-learn
-pandas
-requests
-torch          # Auto-selects latest compatible version for Python 3.13
-torchvision    # Auto-selects matching version for your torch
-Pillow
-python-multipart
-aiofiles
-python-dotenv
+# === AI / NLP ===
+transformers==4.42.3
+torch==2.3.1
+torchvision==0.18.1
+
+# === Computer Vision / OCR ===
+opencv-python==4.10.0.84
+pytesseract==0.3.13
+Pillow==10.3.0
+
+# === Database & ORM ===
+sqlalchemy==2.0.30
+psycopg2-binary==2.9.9
+
+# === Machine Learning / Data Processing ===
+scikit-learn==1.5.1
+pandas==2.2.2
+numpy==1.26.4
+
+# === Visualization ===
+plotly==5.24.1
+altair==5.5.0
+
+# === Networking / Utilities ===
+requests==2.31.0
+aiofiles==23.2.1
+python-multipart==0.0.9
+python-dotenv==1.0.1
