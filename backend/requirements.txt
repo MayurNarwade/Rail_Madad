@@ -15,7 +15,7 @@ Pillow==10.3.0
 
 # === Database & ORM ===
 sqlalchemy==2.0.30
-psycopg2-binary==2.9.9    # prevents pg_config build errors
+psycopg2-binary==2.9.9
 
 # === Machine Learning / Data Processing ===
 scikit-learn==1.5.1
@@ -23,7 +23,8 @@ pandas==2.2.2
 numpy==1.26.4
 
 # === Visualization ===
-plotly==5.24.1             # for charts (fixes ModuleNotFoundError)
+plotly==5.24.1
+altair==5.5.0
 
 # === Networking / Utilities ===
 requests==2.31.0
